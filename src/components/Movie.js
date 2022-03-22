@@ -7,7 +7,7 @@ const Movie = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
-    const {movies, deleteMovie} = props;
+    const {movies, displayFavorites, deleteMovie} = props;
     const deleteMovieHelper = id => {
         deleteMovie(id);
         push('/movies');
@@ -56,7 +56,8 @@ const Movie = (props) => {
 
 const mapStateToProps = state => {
     return {
-        movies: state.movies
+        movies: state.movieReducer.movies,
+        displayFavorites: state.favoritesReducer.displayFavorites,
     }
 }
 export default connect(mapStateToProps, {deleteMovie})(Movie);
